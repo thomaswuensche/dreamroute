@@ -12,24 +12,27 @@ class Calculator():
             mobility_type,
             departure_time=departure)
 
-        # log.info(mobility_type)
-        # log.info(directions_result[0]['legs'][0]['distance']['text'])
-        # log.info(directions_result[0]['legs'][0]['duration']['text'])
-
         distance = directions_result[0]['legs'][0]['distance']['value']
+        distance_km = round(distance/1000, 2)
+
         duration = directions_result[0]['legs'][0]['duration']['value']
+        duration_min = round(duration/60)
 
         data = DataHandler(self.connection)
 
         emissions = data.get_emissions(mobility_type, model)
         emissions_on_trip = round(emissions*(distance/1000), 2)
-        # log.info('CO2 emissions: {}kg'.format(emissions_on_trip))
 
         price = data.get_price(mobility_type, model)
         if price['min'] == True:
             price_of_trip = round(price['value']*(duration/60), 2)
         else:
             price_of_trip = round(price['value']*(distance/1000), 2)
-        # log.info('Price of trip: {}€'.format(price_of_trip))
 
-        return (distance, duration)
+        return {
+            'mobility_type': mobility_type,
+            'distance': distance_km,
+            'duration': duration_min,
+            'emissions_on_trip': emissions_on_trip,
+            'price_of_trip': price_of_trip
+        }

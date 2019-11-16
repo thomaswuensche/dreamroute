@@ -41,8 +41,9 @@ def index():
         for mobility_type in mobility_types:
             route_infos.append(calculator.calculate_trip(start, destination, departure, mobility_type, model))
 
+        return render_template('index.html', form=form, start=start, destination=destination,
+            departure=departure, route_infos=route_infos)
 
-        return render_template('index.html', form=form, start=start, destination=destination, departure_date=departure_date, departure_time=departure_time, departure=departure, mobility_types=mobility_types, route_infos = route_infos )
     return render_template('index.html', form=form)
 
 

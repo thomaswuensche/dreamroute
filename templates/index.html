@@ -24,28 +24,35 @@
             <div>
             {{ form.submit(class="submit-button") }}
             </div>
-
         </form>
         <div>
-            {{start}}
+            Start: {{start}}
         </div>
         <div>
-        {{destination}}
+            Destination: {{destination}}
         </div>
         <div>
-            {{departure_date}}
+            When: {{departure}}
         </div>
         <div>
-            {{departure_time}}
-        </div>
-        <div>
-            {{departure}}
-        </div>
-        <div>
-            {{mobility_types}}
-        </div>
-        <div>
-            {{route_infos}}
+          <table>
+            <tr>
+              <th>mobility_type</th>
+              <th>duration</th>
+              <th>distance</th>
+              <th>emissions</th>
+              <th>price</th>
+            </tr>
+            {% for route in route_infos %}
+              <tr>
+                <td>{{ route['mobility_type'] }}</td>
+                <td>{{ route['duration'] }}min</td>
+                <td>{{ route['distance'] }}km</td>
+                <td>{{ route['emissions_on_trip'] }}kg CO2</td>
+                <td>{{ route['price_of_trip'] }}€</td>
+              </tr>
+            {% endfor %}
+          </table>
         </div>
     </body>
     {% endblock content %}

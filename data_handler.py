@@ -7,7 +7,7 @@ class DataHandler():
         cursor = self.connection.cursor()
         sql = "SELECT emissions_per_km FROM emissions WHERE mobility_type=%(mobility_type)s"
 
-        if model != 'None':
+        if mobility_type == 'driving' and model != 'None':
             sql = sql + " AND model='{}'".format(model)
 
         val = {'mobility_type': mobility_type}
@@ -23,7 +23,7 @@ class DataHandler():
         cursor = self.connection.cursor()
         sql = "SELECT price_per_km, price_per_min FROM emissions WHERE mobility_type=%(mobility_type)s"
 
-        if model != 'None':
+        if mobility_type == 'driving' and model != 'None':
             sql = sql + " AND model='{}'".format(model)
 
         val = {'mobility_type': mobility_type}
