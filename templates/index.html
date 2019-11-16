@@ -20,6 +20,9 @@
             {{ form.departure_time(id='departure_time') }}
             </div>
             {{ form.mobility_types(id='mobility_types') }}
+            <div id="model_div", style="display: none;">
+            {{ form.model(id='model') }}
+            </div>
             <div>
             {{ form.submit(class="submit-button") }}
             </div>
@@ -47,5 +50,19 @@
             {{route_infos}}
         </div>
     </body>
-    {% endblock content %}    
+    {% endblock content %}
+    <script>
+    var mobility_types = document.getElementById('mobility_types');
+    mobility_types.addEventListener("click", function() {
+        var selected = mobility_types.options[mobility_types.selectedIndex].text;
+        console.log(mobility_types)
+        console.log(selected)
+        if(selected !== "driving"){
+            document.getElementById('model_div').style.display = 'none';
+        }
+        else if(selected === "driving"){
+            document.getElementById('model_div').style.display = 'block';
+        }
+        });
+    </script>    
 </html>
