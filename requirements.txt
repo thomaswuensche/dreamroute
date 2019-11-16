@@ -1,2 +1,3 @@
 googlemaps
 mysql-connector-python
+Flask
