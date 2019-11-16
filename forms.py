@@ -9,8 +9,8 @@ class SearchForm(FlaskForm):
     destination = StringField('Destination', validators=[DataRequired()])
     departure_date = DateField('Departure Date', format='%Y-%m-%d', validators=[DataRequired()])
     departure_time = TimeField('Departure Time', validators=[DataRequired()])
-    mobility_types = SelectMultipleField('Select mobility type', default='transit', choices=[('transit', 'transit'), ('bicycling', 'bicycling'), ('walking', 'walking'), ('driving', 'driving')])
-    model = RadioField('Select model', default='BMW i3', choices=[('BMW i3', 'BMW i3'), ('Renault Zoe', 'Renault Zoe'), ('VW Polo', 'VW Polo')])
+    mobility_types = SelectMultipleField('Select mobility type', default='transit', choices=[('driving', 'driving'), ('transit', 'transit'), ('bicycling', 'bicycling'), ('walking', 'walking')])
+    model = RadioField('Select model', choices=[('BMW i3', 'BMW i3'), ('Renault Zoe', 'Renault Zoe'), ('VW Polo', 'VW Polo')])
     submit = SubmitField('Go')
 
 
