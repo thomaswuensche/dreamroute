@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>dreamroute</title>
-    <link rel="stylesheet" href="/static/style.css" type="text/css">
-    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-  </head>
-  <body>
-      <h1>Hello Dreamers!</h1>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <title>dreamroute</title>
+        <link rel="stylesheet" href="/static/style.css" type="text/css">
+        <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+    {% block content %}
+        <form method="post" autocomplete="off">
+            {{ form.hidden_tag() }}
+            <div>
+            {{ form.start(id="start", placeholder="Start Adress") }}
+            {{ form.destination(id="destination", placeholder="Destination Adress") }}
+            </div>
+            <div>
+            {{ form.departure_date(id='departure_date') }}
+            {{ form.departure_time(id='departure_time') }}
+            </div>
+            {{ form.mobility_types(id='mobility_types') }}
+            <div>
+            {{ form.submit(class="submit-button") }}
+            </div>
+
+        </form>
+        <div>
+            {{start}}
+        </div>
+        <div>
+        {{destination}}
+        </div>
+        <div>
+            {{departure_date}}
+        </div>
+        <div>
+            {{departure_time}}
+        </div>
+        <div>
+            {{departure}}
+        </div>
+        <div>
+            {{mobility_types}}
+        </div>
+        <div>
+            {{route_infos}}
+        </div>
+    </body>
+    {% endblock content %}    
 </html>
