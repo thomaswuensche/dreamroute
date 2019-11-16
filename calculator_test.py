@@ -45,11 +45,11 @@ data = DataHandler(connection)
 
 emissions = data.get_emissions(args.mobility_type, args.model)
 emissions_on_trip = round(emissions*(distance/1000), 2)
-log.info('CO2 emissions in kg: {}'.format(emissions_on_trip))
+log.info('CO2 emissions: {}kg'.format(emissions_on_trip))
 
 price = data.get_price(args.mobility_type, args.model)
 if price['min'] == True:
-    price_of_trip = price['value']*(duration/60)
+    price_of_trip = round(price['value']*(duration/60), 2)
 else:
-    price_of_trip = price['value']*(distance/1000)
-log.info('Price of trip: {}'.format(price_of_trip))
+    price_of_trip = round(price['value']*(distance/1000), 2)
+log.info('Price of trip: {}€'.format(price_of_trip))
