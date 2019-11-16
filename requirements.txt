@@ -1,0 +1,5 @@
+googlemaps
+mysql-connector-python
+Flask
+flask-wtf
+WTForms-Components

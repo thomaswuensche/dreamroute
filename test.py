@@ -12,6 +12,15 @@ log.basicConfig(level=log.INFO,
 
 gmaps = googlemaps.Client(key=credentials.apikey)
 
+def get_routeinfo(start, destination, departure, mobility_type):
+    api_response = gmaps.directions(start, destination, mode=mobility_type, departure_time=departure)
+    distance = api_response[0]['legs'][0]['distance']['text']
+    duration = api_response[0]['legs'][0]['duration']['text']
+
+    return (distance, duration)
+
+
+
 # Request directions via public transit
 now = datetime.now()
 directions_result = gmaps.directions("HTW Berlin Wilhelminenhof",
